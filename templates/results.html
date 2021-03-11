@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block title %}Yo{% endblock %}
+
+{% block main %}
+<h1>Alright, here you go</h1>
+<h3>For the most effective doing your job you will need:</h3>
+<ul style="text-align: left;">
+    <li>$100 bills: {{notes[100]}}X</li>
+    <li>$50 bills: {{notes[50]}}X</li>
+    <li>$20 bills: {{notes[20]}}X</li>
+    <li>$10 bills: {{notes[10]}}X</li>
+    <li>$5 bills: {{notes[5]}}X</li>
+    <li>$2 coins: {{notes[2]}}X</li>
+    <li>$1 coins: {{notes[1]}}X</li>
+</ul>
+<p>Americans, replace $2 coins with $1 bills</p>
+<table class="table table-striped caption-top">
+    <caption>Tip distribution</caption>
+    <thead>
+      <tr>
+        <th scope="col"># in the ist</th>
+        <th scope="col">Tips</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for partner in payouts %}
+      <tr>
+        <th scope="row">{{ partner }}</th>
+        <td>gets ${{ payouts[partner] }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+<a class="btn btn-success" href="/entry">Reset</a>
+{% endblock %}

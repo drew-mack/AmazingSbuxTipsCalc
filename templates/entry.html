@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+
+{% block title %}Yo{% endblock %}
+
+{% block main %}
+<style>
+    h4{
+        margin: 1vh;
+    }
+    #content, #meme{
+        transition: all 0.3s ease;
+    }
+</style>
+<div style="visibility: visible;" id="content">
+<h1>Fill the form below</h1>
+<h4>Your partner hours</h4>
+<form action="/entry" method="POST" class="container">
+    <div class="row">
+        <div class="col-sm">
+            <button type="button" style="margin: 2vh;" class="addPartner btn btn-success">Add a partner</button><br>
+        </div>
+        <div class="col-sm">
+            <h4>Total sum of tips</h4>
+            <input class="form-control" type="number" placeholder="$" required name="bank">
+            <h4>Total tippable hours</h4>
+            <input class="form-control" step="0.01" min="0" type="number" required name="total_hours">
+        </div>
+    </div>
+    <input hidden name="qty_partners" id="qty" value="">
+    <button style="margin: 3vh;" onclick="meme" type="submit" class="btn btn-dark">Calculate</button>
+</form>
+</div>
+<div hidden style="visibility: hidden;" id="meme">
+    <img style="width: 8vh;" src="/static/bean1.gif"> <span style="font-size: 30px; font-weight: bold;">Doing some fancy calculations</span> <img src="/static/bean2.gif" style="width: 10vh;">
+    <h5>For now, look at this meme</h5>
+    <img src="{{meme}}" style="max-width: 50vh;">
+</div>
+<script>
+    var partners = 0;
+    $(document).on('click', '.addPartner', function(){
+    partners ++;
+    document.getElementById("qty").value = `${partners}`;
+	var html = `<input class="form-control" step="0.01" min="0" placeholder="Partner #${partners} hours" type="number" name="person_${partners}"><br>`;
+  $(this).parent().append(html);
+});
+function meme(){
+    const content = document.getElementById("content");
+    const meme = document.getElementById("meme");
+    content.hidden = true;
+    content.style.visibility = "hidden";
+    content.style.opacity = "0";
+    meme.hidden = false;
+    meme.style.visibility = "visible";
+    meme.style.opacity = "1";
+};
+</script>
+{% endblock %}

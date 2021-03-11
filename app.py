@@ -1,11 +1,8 @@
 from tempfile import mkdtemp
 import os
 import random
-from time import sleep
 
-from flask import Flask, flash, redirect, render_template, request, session, jsonify, make_response, send_from_directory, url_for
-from flask.helpers import total_seconds
-from flask_session import Session
+from flask import Flask, render_template, request
 
 from functions import *
 

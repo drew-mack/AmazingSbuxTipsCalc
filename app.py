@@ -37,10 +37,10 @@ def entry():
                 partners.append(name)
             else:
                 partners.append(f"Person {person}")
-        print(partners)
         for person in partners:
-            hours[person] = request.form.get(person)
-        print(hours)
+            time = request.form.get(person)
+            if time:
+                hours[person] = time
         bank = int(request.form.get("bank"))
         total_hours = float(request.form.get("total_hours"))
         payouts = {}

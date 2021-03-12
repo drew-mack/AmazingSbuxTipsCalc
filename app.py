@@ -1,6 +1,7 @@
 from tempfile import mkdtemp
 import os
 import random
+from time import sleep
 
 from flask import Flask, render_template, request
 
@@ -28,9 +29,18 @@ def entry():
     if request.method == "GET":
         return render_template("entry.html", meme=random.choice(MEMES))
     else:
+        partners = []
         hours = {}
-        for person in range(int(request.form.get("qty_partners")) + 1):
-            hours[f"Person {person}"] = request.form.get(f"person_{person}")
+        for person in range(1, int(request.form.get("qty_partners")) + 1):
+            name = request.form.get(f"name_{person}")
+            if name:
+                partners.append(name)
+            else:
+                partners.append(f"Person {person}")
+        print(partners)
+        for person in partners:
+            hours[person] = request.form.get(person)
+        print(hours)
         bank = int(request.form.get("bank"))
         total_hours = float(request.form.get("total_hours"))
         payouts = {}

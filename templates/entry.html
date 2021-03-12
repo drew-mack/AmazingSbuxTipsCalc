@@ -27,7 +27,7 @@
         </div>
     </div>
     <input hidden name="qty_partners" id="qty" value="">
-    <button style="margin: 3vh;" onclick="meme" type="submit" class="btn btn-dark">Calculate</button>
+    <button style="margin: 3vh;" onclick="connect()" type="submit" class="btn btn-dark">Calculate</button>
 </form>
 </div>
 <div hidden style="visibility: hidden;" id="meme">
@@ -40,7 +40,11 @@
     $(document).on('click', '.addPartner', function(){
     partners ++;
     document.getElementById("qty").value = `${partners}`;
-	var html = `<input class="form-control" step="0.01" min="0" placeholder="Partner #${partners} hours" type="number" name="person_${partners}"><br>`;
+	var html = `
+        <div style="margin-top: 2vh; margin-bottom: 2vh;">
+            <input class="form-control" placeholder="Partner name (optional)" autocomplete="off" type="text" name="name_${partners}">
+            <input class="form-control" step="0.01" min="0" placeholder="Partner #${partners} hours" type="number" name="Person ${partners}">
+        </div>`;
   $(this).parent().append(html);
 });
 function meme(){
@@ -52,6 +56,15 @@ function meme(){
     meme.hidden = false;
     meme.style.visibility = "visible";
     meme.style.opacity = "1";
+};
+function connect(){
+    for (i=1; i<=partners; i++) {
+        var name = document.querySelector(`input[name="name_${i}"]`).value;
+        var hours = document.querySelector(`input[name="Person ${i}"]`);
+        if (name !== "") {
+            hours.name = name;
+        };
+    };
 };
 </script>
 {% endblock %}

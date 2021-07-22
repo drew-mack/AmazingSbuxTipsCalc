@@ -7,3 +7,10 @@ body{
     text-align: center;
     padding: 5vh;
   }
+div.form-container{
+  display: grid;
+  place-items: center;
+}
+.form-control{
+  max-width: 20rem;
+}

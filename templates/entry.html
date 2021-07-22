@@ -16,14 +16,14 @@
 <form action="/entry" method="POST" class="container">
     <div class="row">
         <div class="col-sm">
+            <h4>Total sum of tips</h4>
+            <div class="form-container">
+                <input class="form-control" type="number" placeholder="$" required name="bank">
+            </div>
             <h4>Your partner hours</h4>
             <button type="button" style="margin: 2vh;" class="addPartner btn btn-success">Add a partner</button><br>
             <h5>Or</h5>
             <button type="button" style="margin: 2vh;" class="addPartners btn btn-success">Add <input style="max-width: 40px;" placeholder="#" id="partnersQty"> partners</button><br>
-        </div>
-        <div class="col-sm">
-            <h4>Total sum of tips</h4>
-            <input class="form-control" type="number" placeholder="$" required name="bank">
             <!--
             <h4>Total tippable hours</h4>
             <input class="form-control" step="0.01" min="0" type="number" required name="total_hours">
@@ -45,7 +45,7 @@
     partners ++;
     document.getElementById("qty").value = `${partners}`;
     var html = `
-        <div style="margin-top: 2vh; margin-bottom: 2vh;">
+        <div class="form-container" style="margin-top: 2vh; margin-bottom: 2vh;">
             <input class="form-control" placeholder="Partner name (optional)" autocomplete="off" type="text" name="name_${partners}">
             <input class="form-control" step="0.01" min="0" placeholder="Partner #${partners} hours" type="number" name="Person ${partners}">
         </div>`;
@@ -58,7 +58,7 @@
             partners++;
             document.getElementById("qty").value = `${partners}`;
             var html = `
-                <div style="margin-top: 2vh; margin-bottom: 2vh;">
+                <div class="form-container" style="margin-top: 2vh; margin-bottom: 2vh;">
                     <input class="form-control" placeholder="Partner name (optional)" autocomplete="off" type="text" name="name_${partners}">
                     <input class="form-control" step="0.01" min="0" placeholder="Partner #${partners} hours" type="number" name="Person ${partners}">
                 </div>`;

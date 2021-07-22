@@ -26,6 +26,12 @@ def home():
 
 @app.route("/entry", methods=["GET", "POST"])
 def entry():
+    """
+    On GET, displays the page to enter partner hours and total ammount of tips
+
+    On POST, requests partner names and respective hours, calculates the ammount of tips each partner is entitled to and total ammmount of each denomination needed to complete the job. 
+    If the ammount cannot be rounded properly, the algorithm gives extra money, or subtracts missing money to make up the nearest $5.
+    """
     if request.method == "GET":
         return render_template("entry.html", meme=random.choice(MEMES))
     else:

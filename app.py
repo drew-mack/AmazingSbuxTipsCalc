@@ -31,6 +31,7 @@ def entry():
     else:
         partners = []
         hours = {}
+        total_hours = float()
         for person in range(1, int(request.form.get("qty_partners")) + 1):
             name = request.form.get(f"name_{person}")
             if name:
@@ -41,8 +42,8 @@ def entry():
             time = request.form.get(person)
             if time:
                 hours[person] = time
+                total_hours += time
         bank = int(request.form.get("bank"))
-        total_hours = float(request.form.get("total_hours"))
         payouts = {}
         total_rn = 0
         for partner in hours:

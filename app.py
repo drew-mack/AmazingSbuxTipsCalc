@@ -47,10 +47,9 @@ def entry():
             else:
                 partners.append(f"Person {person}")
         for person in partners:
-            time = request.form.get(person)
+            time = float(request.form.get(person))
             if time:
                 hours[person] = time
-                print(f'time type {type(time)}')
                 total_hours += float(time)
         bank = int(request.form.get("bank"))
         payouts = {}
